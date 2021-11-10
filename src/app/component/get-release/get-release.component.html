@@ -1,0 +1,67 @@
+<div class="alert alert-success alert-sm" *ngIf="showDownloadSpinner" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+      <span class="alert-text">
+          Hello sir, collecting schema releases information...
+          <clr-spinner [clrSmall]="true"></clr-spinner>
+      </span>
+        </div>
+    </div>
+</div>
+<div class="alert alert-success alert-sm" *ngIf="showDownloadAlert" role="alert">
+    <div class="alert-items">
+        <div class="alert-item static">
+      <span class="alert-text">
+          Collecting release artifacts and send them to you sir...
+                              <clr-spinner *ngIf="showDownloadAlert" [clrSmall]="true"></clr-spinner>
+      </span>
+        </div>
+    </div>
+</div>
+<form clrForm>
+    <clr-select-container>
+        <label>Select Schema Release:</label>
+        <select clrSelect name="options" [(ngModel)]="selectedRelease" (ngModelChange)="releaseSelected($event)">
+            <option *ngFor="let release of releases"
+                    [ngValue]="release">
+                {{release.tag}}
+            </option>
+        </select>
+    </clr-select-container>
+</form>
+<div *ngIf="(selectedReleaseInfo | json) !== '{}'" class="clr-row">
+    <div class="clr-col-12 clr-col-sm-6">
+        <div class="card">
+            <div class="card-block">
+                <h4 class="card-title">Release Information</h4>
+                <p class="card-text"><b>Release Tag:</b> {{selectedRelease.tag}}, <b>Release
+                    ID:</b> {{selectedRelease.id}}</p>
+                <div class="card-text">
+                    <label><b>Release Creator:</b></label>
+                    <label>
+                        {{selectedReleaseInfo.author}}
+                    </label>
+                </div>
+                <div class="card-text">
+                    <label><b>Creator Email:</b></label>
+                    <label>
+                        {{selectedReleaseInfo.email}}
+                    </label>
+                </div>
+                <div class="card-text">
+                    <label><b>Creation Date:</b></label>
+                    <label>
+                        {{selectedReleaseInfo.date | date:'dd/MM/yyyy' }}
+                    </label>
+                </div>
+            </div>
+            <div class="card-footer">
+                <div class="progress-static top">
+                    <div class="progress-meter" data-value="50"></div>
+                </div>
+                <a (click)="downloadRelease(selectedRelease)" class="card-link" style="cursor: pointer;">Download
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
