@@ -1,3 +1,24 @@
+<cds-file>
+    <label>Upload release zip file</label>
+    <input type="file" multiple
+           accept=".zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed"
+           [(ngModel)]="input" (change)="fileSelected($event)"/>
+</cds-file>
+<br/>
+<div class="clr-row">
+    <div class="clr-col">
+    </div>
+    <div class="clr-col">
+        <cds-button status="neutral" size="sm" (click)="createPR()" [disabled]="!input">Create Release
+        </cds-button>
+    </div>
+    <div class="clr-col">
+    </div>
+    <div class="clr-col">
+    </div>
+    <div class="clr-col">
+    </div>
+</div>
 <div class="alert alert-success alert-sm" *ngIf="showDownloadSpinner" role="alert">
     <div class="alert-items">
         <div class="alert-item static">
@@ -8,10 +29,3 @@
         </div>
     </div>
 </div>
-<form clrForm>
-    <clr-input-container>
-        <label>Upload release file</label>
-        <input clrInput type="file" name="file" accept=".zip,application/octet-stream,application/zip,application/x-zip,application/x-zip-compressed" [(ngModel)]="input"  (change)="fileSelected($event)"/>
-    </clr-input-container>
-</form>
-<button class="btn" (click)="createPR()" [disabled]="!input">Create pull request</button>

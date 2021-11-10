@@ -8,6 +8,7 @@ import { GetReleaseComponent } from './component/get-release/get-release.compone
 import { CreateReleaseComponent } from './component/create-release/create-release.component';
 import {HttpClientModule} from "@angular/common/http";
 import {FormsModule} from "@angular/forms";
+import { CdsModule } from '@cds/angular';
 
 @NgModule({
     declarations: [
@@ -20,7 +21,8 @@ import {FormsModule} from "@angular/forms";
         ClarityModule,
         HttpClientModule,
         BrowserAnimationsModule,
-        FormsModule
+        FormsModule,
+        CdsModule
     ],
     providers: [],
     bootstrap: [AppComponent]
