@@ -17,22 +17,16 @@
                 <p class="card-text"><b>Release Tag:</b> {{selectedRelease.tag}}, <b>Release
                     ID:</b> {{selectedRelease.id}}</p>
                 <div class="card-text">
-                    <label><b>Release Creator:</b></label>
-                    <label>
-                        {{selectedReleaseInfo.author}}
-                    </label>
+                    <p><b>Release Creator:</b>
+                        {{selectedReleaseInfo.author}}</p>
                 </div>
                 <div class="card-text">
-                    <label><b>Creator Email:</b></label>
-                    <label>
-                        {{selectedReleaseInfo.email}}
-                    </label>
+                    <p><b>Creator Email:</b>
+                        {{selectedReleaseInfo.email}}</p>
                 </div>
                 <div class="card-text">
-                    <label><b>Creation Date:</b></label>
-                    <label>
-                        {{selectedReleaseInfo.date | date:'dd/MM/yyyy' }}
-                    </label>
+                    <p><b>Creation Date:</b>
+                        {{selectedReleaseInfo.date | date:'dd/MM/yyyy' }}</p>
                 </div>
             </div>
             <div class="card-footer">

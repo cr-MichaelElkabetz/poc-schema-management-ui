@@ -5,27 +5,67 @@
            [(ngModel)]="input" (change)="fileSelected($event)"/>
 </cds-file>
 <br/>
-<div class="clr-row">
-    <div class="clr-col">
+<div *ngIf="presentCard">
+    <div class="clr-row">
+        <div class="clr-col-12 clr-col-sm-6">
+            <div class="card">
+                <div class="card-block">
+                    <h4 class="card-title">Release Information</h4>
+                    <div class="card-text">
+                        <p><b>Release Creator:</b>
+                            {{selectedReleaseInfo.author}}</p>
+                    </div>
+                    <div class="card-text">
+                        <p><b>Creator Email:</b>
+                            {{selectedReleaseInfo.email}}</p>
+                    </div>
+                    <div class="card-text">
+                        <p><b>Creation Date:</b>
+                            {{selectedReleaseInfo.date | date:'dd/MM/yyyy' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="clr-col">
-        <cds-button status="neutral" size="sm" (click)="createPR()" [disabled]="!input">Create Release
-        </cds-button>
+    <br/>
+    <cds-toggle status="error">
+        <label>Auto Merge</label>
+        <input type="checkbox" (change)="toggleChanged()"/>
+        <cds-control-message status="error">Please make sure you know what are you doing :)</cds-control-message>
+    </cds-toggle>
+    <br/>
+    <div class="clr-row">
+        <div class="clr-col">
+        </div>
+        <div class="clr-col">
+            <cds-button status="neutral" size="sm" (click)="processRelease()" [disabled]="!presentCard">{{btnText}}
+            </cds-button>
+        </div>
+        <div class="clr-col">
+        </div>
+        <div class="clr-col">
+        </div>
+        <div class="clr-col">
+        </div>
     </div>
-    <div class="clr-col">
-    </div>
-    <div class="clr-col">
-    </div>
-    <div class="clr-col">
-    </div>
-</div>
-<div class="alert alert-success alert-sm" *ngIf="showDownloadSpinner" role="alert">
-    <div class="alert-items">
-        <div class="alert-item static">
+    <div class="alert alert-success alert-sm" *ngIf="showDownloadSpinner" role="alert">
+        <div class="alert-items">
+            <div class="alert-item static">
       <span class="alert-text">
           Thank you sir, uploading release artifacts...
           <clr-spinner [clrSmall]="true"></clr-spinner>
       </span>
+            </div>
         </div>
     </div>
 </div>
+
+<clr-modal [clrModalSize]="'sm'"  [(clrModalOpen)]="showModal" [clrModalClosable]="false">
+    <div class="modal-body">
+        <cds-icon shape="check-circle" status="success"></cds-icon>
+        {{modalMessage}}
+    </div>
+    <div class="modal-footer">
+        <cds-button status="success" (click)="closeModal()">Ok</cds-button>
+    </div>
+</clr-modal>

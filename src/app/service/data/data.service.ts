@@ -36,8 +36,15 @@ export class DataService {
             );
     }
 
-    createRelease(repo: string, file: File) {
+    createPullRequest(repo: string, file: File) {
         return this.http.post(`${this.api}pr/` + repo + `/`, file)
+            .pipe(
+                catchError(this.errorHandle)
+            );
+    }
+
+    createRelease(repo: string, file: File) {
+        return this.http.post(`${this.api}release/` + repo + `/`, file)
             .pipe(
                 catchError(this.errorHandle)
             );
